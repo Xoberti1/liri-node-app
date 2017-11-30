@@ -1,17 +1,11 @@
 var keys = require("./keys.js");
 
 var consumerKey = keys.consumer_key;
-console.log(consumerKey);
 var consumerSecret = keys.consumer_secret;
-console.log(consumerSecret);
 var tokenKey = keys.access_token_key;
-console.log(tokenKey);
 var tokenSecret = keys.access_token_secret;
-console.log(tokenSecret);
 var clientID = keys.client_id;
-console.log(clientID);
 var clientSecret = keys.client_secret;
-console.log(clientSecret);
 
 var action = process.argv[2];
 var command = process.argv[3];
@@ -46,12 +40,13 @@ function myTweets() {
 	});
 
 	//var params = {screen_name: '@realDonaldTrump'};
-	client.get('https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=@realDonaldTrump&count=20', function (error, tweets, response) {
+	client.get('https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=@realDonaldTrump&count=3', function (error, tweets, response) {
 		if (!error) {
 			for (var i = 0; i < tweets.length; i++) {
 				var tweetz = tweets[i];
-				console.log(tweetz.text, tweetz.created_at);
-				//console.log(tweets[1].text, tweets[1].created_at);
+				console.log(tweetz.text);
+				console.log(tweetz.created_at);
+				console.log("\n");
 			};
 		};
 	});
@@ -76,7 +71,7 @@ function spotify() {
 	spotify.search({
 		type: 'track',
 		query: sptSearch,
-		limit: 5
+		limit: 3
 	}, function (err, data) {
 	
 		if (err) {
@@ -85,7 +80,11 @@ function spotify() {
 		for (var i = 0; i < data.tracks.items.length; i++) {
 			var songInfo = data.tracks.items[i];
 			//console.log(songInfo); 
-			console.log(songInfo.artists[0].name, songInfo.name, songInfo.album.name, songInfo.preview_url);
+			console.log(songInfo.artists[0].name);
+			console.log(songInfo.name);
+			console.log(songInfo.album.name);
+			console.log(songInfo.preview_url);
+			console.log("\n");
 		};
 	});
 };
@@ -109,7 +108,14 @@ function omdb() {
 		if (!error && response.statusCode === 200) {
 
 			// Then we print out the imdbRating
-			console.log(JSON.parse(body).Title, JSON.parse(body).Year, JSON.parse(body).imdbRating, JSON.parse(body).Ratings[1].Value, JSON.parse(body).Country, JSON.parse(body).Language, JSON.parse(body).Actors);
+			console.log(JSON.parse(body).Title);
+			console.log(JSON.parse(body).Year);
+			console.log(JSON.parse(body).imdbRating);
+			console.log(JSON.parse(body).Ratings[1].Value);
+			console.log(JSON.parse(body).Country);
+			console.log(JSON.parse(body).Language);
+			console.log(JSON.parse(body).Actors);
+			console.log("\n");
 		}
 	});
 };
